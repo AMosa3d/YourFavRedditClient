@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">YourFavRedditClient</string>
+    <string name="reddit_pref">Reddit_Shared_Pref</string>
+    <string name="code_pref_key">Code</string>
+    <string name="access_token_pref_key">AccessToken</string>
+    <string name="refresh_token_pref_key">RefreshToken</string>
+    <string name="nav_stared_subreddits_menu_item">Started Subreddits</string>
+    <string name="open_nav_drawer">Open Drawer</string>
+    <string name="close_nav_drawer">Close Drawer</string>
+    <string name="reply_text">Reply</string>
+    <string name="comments_text">Comments:</string>
+    <string name="add_comment_text">Add Comment</string>
+    <string name="comment_hint_text">Add Your Comment Body</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="post_object_key">PostsKey</string>
+    <string name="test_ad">ca-app-pub-3940256099942544/6300978111</string>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "732752799073",
+    "firebase_url": "https://yourfavredditclient.firebaseio.com",
+    "project_id": "yourfavredditclient",
+    "storage_bucket": "yourfavredditclient.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732752799073:android:c4a2424906c65ee1",
+        "android_client_info": {
+          "package_name": "com.example.abdel.yourfavredditclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732752799073-tnl1v7g2nl25h3aglm96civrhjas62ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWug5u1p4gayz_8YJMuIxo1YckHjALTPQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
