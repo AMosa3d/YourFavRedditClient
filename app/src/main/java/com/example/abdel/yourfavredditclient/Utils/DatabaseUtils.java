@@ -38,9 +38,9 @@ public final class DatabaseUtils {
         );
     }
 
-    public static List<String> retrieveStaredSubreddit(Context context)
+    public static Cursor retrieveStaredSubreddit(Context context)
     {
-        Cursor cursor = context.getContentResolver().query(
+        return context.getContentResolver().query(
                 RedditProvider.Subreddit.SUBREDDITS,
                 null,
                 null,
@@ -48,6 +48,10 @@ public final class DatabaseUtils {
                 null
         );
 
+    }
+
+    public static List<String> getStaredSubredditNames(Cursor cursor)
+    {
         List<String> result = new ArrayList<>();
         if (cursor == null)
             return result;
@@ -79,6 +83,8 @@ public final class DatabaseUtils {
         ContentValues values = new ContentValues();
         for (int i=0;i<SIZE;i++)
         {
+            if (i >= posts.size())
+                continue;
             Post currentPost = posts.get(i);
 
             values.put(PostsColumns.POST_TITLE,currentPost.getTitle());

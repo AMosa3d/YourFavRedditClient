@@ -51,6 +51,9 @@
             android:name="com.example.abdel.yourfavredditclient.ContentProvider.generated.RedditProvider"
             android:authorities="com.example.abdel.yourfavredditclient"
             android:exported="false" />
+
+        <service android:name=".Services.NotificationService"
+            android:enabled="true"/>
     </application>
 
 </manifest>

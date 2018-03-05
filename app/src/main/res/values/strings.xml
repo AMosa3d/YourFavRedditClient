@@ -15,4 +15,22 @@
     <string name="add_widget">Add widget</string>
     <string name="post_object_key">PostsKey</string>
     <string name="test_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="notification_title">You Will Be Missed</string>
+    <string name="notification_content">Please , Come and visit us again</string>
+    <string name="contentDescription_thumbnail">Thumbnail</string>
+    <string name="contentDescription_avatar">Account Avatar</string>
+    <string name="contentDescription_share">Share</string>
+    <string name="contentDescription_star">Star Subreddit</string>
+    <string name="string_By">By : </string>
+    <string name="string_To">To : </string>
+    <string name="string_Welcome">Welcome</string>
+    <string name="string_self">self</string>
+    <string name="comments_retrieval_failed">Comments Data Retrieval Failed!</string>
+    <string name="subreddits_retrieval_failed">Subreddits Data Retrieval Failed</string>
+    <string name="posts_retrieval_failed">Posts Data Retrieval Failed!</string>
+    <string name="token_retrieval_failed">Authorization Failed!</string>
+    <string name="account_retrieval_failed">Account Data Retrieval Failed!</string>
+    <string name="post_comment_failed">Your Comment Has Been Posted!</string>
+    <string name="post_comment_done">Sorry Cannot post your comment please try again later</string>
+
 </resources>

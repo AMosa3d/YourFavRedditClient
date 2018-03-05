@@ -69,6 +69,7 @@ public final class NetworkUtils {
     final static String REFRESH_BASE_URL = "https://www.reddit.com";
     final static String OAUTH_BASE_URL = "https://oauth.reddit.com";
     final static String BEARER = "bearer ";
+    final static String AUTHORIZATION_HEADER_KEY = "Authorization";
 
     public static Uri buildAuthURI()
     {
@@ -98,7 +99,7 @@ public final class NetworkUtils {
 
         return response.request()
                 .newBuilder()
-                .addHeader("Authorization",authString)
+                .addHeader(AUTHORIZATION_HEADER_KEY,authString)
                 .build();
     }
 
@@ -125,12 +126,12 @@ public final class NetworkUtils {
                     commentInterface.passCommentsToAdapter(response.body());
                 }
                 else
-                    Toast.makeText(context,"Comments Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.comments_retrieval_failed),Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                Toast.makeText(context,"Comments Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.comments_retrieval_failed),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -156,12 +157,12 @@ public final class NetworkUtils {
                     subredditsInterface.passSubreddits(response.body());
                 }
                 else
-                    Toast.makeText(context,"Subreddits Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.subreddits_retrieval_failed),Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<List<Subreddit>> call, Throwable t) {
-                Toast.makeText(context,"Subreddits Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.subreddits_retrieval_failed),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -193,7 +194,7 @@ public final class NetworkUtils {
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-                Toast.makeText(context,"Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.posts_retrieval_failed),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -230,7 +231,7 @@ public final class NetworkUtils {
                 //TODO:Fill the token
                 if (response.body() == null)
                 {
-                    Toast.makeText(context,"Authorization Failed!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.token_retrieval_failed),Toast.LENGTH_LONG).show();
                     return;
                 }
                 postsInterface.SaveToken(response.body());
@@ -240,7 +241,7 @@ public final class NetworkUtils {
 
             @Override
             public void onFailure(Call<OAuthAccessToken> call, Throwable t) {
-                Toast.makeText(context,"Authorization Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.token_retrieval_failed),Toast.LENGTH_LONG).show();
             }
 
         });
@@ -279,7 +280,7 @@ public final class NetworkUtils {
                 //TODO:Fill the token
                 if (response.body() == null)
                 {
-                    Toast.makeText(context,"Authorization Failed!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.token_retrieval_failed),Toast.LENGTH_LONG).show();
                     return;
                 }
                 postsInterface.SaveToken(response.body());
@@ -289,7 +290,7 @@ public final class NetworkUtils {
 
             @Override
             public void onFailure(Call<OAuthAccessToken> call, Throwable t) {
-                Toast.makeText(context,"Authorization Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.token_retrieval_failed),Toast.LENGTH_LONG).show();
             }
 
         });
@@ -312,12 +313,12 @@ public final class NetworkUtils {
                     postsInterface.PassAccountThrough(response.body());
                 }
                 else
-                    Toast.makeText(context,"Account Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.account_retrieval_failed),Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(context,"Account Data Retrieval Failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.account_retrieval_failed),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -350,15 +351,15 @@ public final class NetworkUtils {
                 //TODO:Fill the token
                 if (response.body() != null && response.isSuccessful())
                 {
-                    Toast.makeText(context,"Your Comment Has Been Posted!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.post_comment_done),Toast.LENGTH_LONG).show();
                 }
                 else
-                    Toast.makeText(context,"Sorry Cannot post your comment please try again later",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,context.getString(R.string.post_comment_failed),Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<PostCommentResponse> call, Throwable t) {
-                Toast.makeText(context,"Sorry Cannot post your comment please try again later",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,context.getString(R.string.post_comment_failed),Toast.LENGTH_LONG).show();
             }
 
         });

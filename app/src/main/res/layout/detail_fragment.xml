@@ -20,6 +20,7 @@
         <ImageView
             android:id="@+id/thumbnail_detail_imageView"
             android:layout_width="wrap_content"
+            android:contentDescription="@string/contentDescription_thumbnail"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" />
 
@@ -56,6 +57,15 @@
             android:textSize="@dimen/home_text_size" />
 
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/add_comment_editText"
+            android:hint="@string/comment_hint_text"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18dp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -88,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:src="@drawable/share_icon"
+            android:contentDescription="@string/contentDescription_share"
             android:layout_margin="16dp"
             android:background="@color/colorAccent" />
 

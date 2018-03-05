@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,6 @@ import com.example.abdel.yourfavredditclient.Interfaces.PassCommentInterface;
 import com.example.abdel.yourfavredditclient.Models.Comment;
 import com.example.abdel.yourfavredditclient.Models.Post;
 import com.example.abdel.yourfavredditclient.R;
-import com.example.abdel.yourfavredditclient.Utils.LogicUtils;
 import com.example.abdel.yourfavredditclient.Utils.NetworkUtils;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -61,10 +61,12 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
     Post post;
     CommentsAdapter adapter;
     NestedScrollView nestedScrollView;
+    EditText commentEditText;
     List<Comment> comments;
     private static final String POSITION_SAVE_INSTANCE_BUNDLE_KEY = "current_item_position";
     private static final String COMMENTS_SAVE_INSTANCE_BUNDLE_KEY = "comments_list";
     private static final String POST_SAVE_INSTANCE_BUNDLE_KEY = "post";
+    private static final String COMMENT_BODY_SAVE_INSTANCE_BUNDLE_KEY = "comment_body";
 
     public DetailFragment() {
     }
@@ -79,6 +81,7 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
         View view = inflater.inflate(R.layout.detail_fragment,container,false);
 
         nestedScrollView = (NestedScrollView) view.findViewById(R.id.post_nestedScrollView);
+        commentEditText = (EditText) view.findViewById(R.id.add_comment_editText);
         adapter = new CommentsAdapter(getContext(),getActivity());
 
         if (savedInstanceState != null)
@@ -86,6 +89,7 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
             comments = savedInstanceState.getParcelableArrayList(COMMENTS_SAVE_INSTANCE_BUNDLE_KEY);
             post = savedInstanceState.getParcelable(POST_SAVE_INSTANCE_BUNDLE_KEY);
             nestedScrollView.setVerticalScrollbarPosition(savedInstanceState.getInt(POSITION_SAVE_INSTANCE_BUNDLE_KEY));
+            commentEditText.setText(savedInstanceState.getString(COMMENT_BODY_SAVE_INSTANCE_BUNDLE_KEY));
         }
         else
             try {
@@ -118,6 +122,7 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
         outState.putParcelableArrayList(COMMENTS_SAVE_INSTANCE_BUNDLE_KEY, (ArrayList<? extends Parcelable>) comments);
         outState.putParcelable(POST_SAVE_INSTANCE_BUNDLE_KEY,post);
         outState.putInt(POSITION_SAVE_INSTANCE_BUNDLE_KEY,nestedScrollView.getVerticalScrollbarPosition());
+        outState.putString(COMMENT_BODY_SAVE_INSTANCE_BUNDLE_KEY,commentEditText.getText().toString());
 
         super.onSaveInstanceState(outState);
     }
@@ -142,7 +147,7 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
         thumbnailIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!post.getDomain().startsWith("self"))
+                if (!post.getDomain().startsWith(getString(R.string.string_self)))
                 {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(post.getUrl()));
                     startActivity(intent);
@@ -175,8 +180,9 @@ public class DetailFragment extends Fragment implements PassCommentInterface {
             public void onClick(View v) {
                 try {
                     String token = PreferenceManager.getDefaultSharedPreferences(getContext()).getString(getString(R.string.access_token_pref_key), "");
-                    View customDialogView = getActivity().getLayoutInflater().inflate(R.layout.post_comment_dialog, null);
-                    LogicUtils.makeCommentDialog(getContext(), customDialogView, ADD_COMMENT_TITLE, token, post.getFullname());
+                    NetworkUtils.postComment(getContext(),token,commentEditText.getText().toString(),post.getFullname());
+                    //View customDialogView = getActivity().getLayoutInflater().inflate(R.layout.post_comment_dialog, null);
+                    //LogicUtils.makeCommentDialog(getContext(), customDialogView, ADD_COMMENT_TITLE, token, post.getFullname());
                 }
                 catch (Exception e)
                 {

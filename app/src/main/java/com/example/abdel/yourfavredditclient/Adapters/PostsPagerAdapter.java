@@ -111,8 +111,8 @@ public class PostsPagerAdapter extends PagerAdapter {
         thumbnailIM = (ImageView) view.findViewById(R.id.thumbnail_imageView);
 
         titleTV.setText(currentPost.getTitle());
-        authorTV.setText("By : " + currentPost.getAuthor());
-        subredditTV.setText("To : " + currentPost.getSubreddit());
+        authorTV.setText(context.getString(R.string.string_By) + currentPost.getAuthor());
+        subredditTV.setText(context.getString(R.string.string_To) + currentPost.getSubreddit());
         Glide.with(context).load(currentPost.getThumbnail()).into(thumbnailIM);
     }
 }

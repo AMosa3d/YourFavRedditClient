@@ -43,7 +43,11 @@ public class StaredSubredditsAdapter extends RecyclerView.Adapter<StaredSubreddi
     @Override
     public void onBindViewHolder(StaredSubredditsViewHolder holder, int position) {
         Subreddit currentSubreddit = staredSubreddits.get(position);
-        holder.bind(currentSubreddit);
+        holder.bind(currentSubreddit,position);
+    }
+
+    public List<Subreddit> getStaredSubreddits() {
+        return staredSubreddits;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class StaredSubredditsAdapter extends RecyclerView.Adapter<StaredSubreddi
             staredImageView = (ImageView) itemView.findViewById(R.id.star_imageView);
         }
 
-        void bind(Subreddit subreddit)
+        void bind(Subreddit subreddit, final int position)
         {
             name = subreddit.getName();
             isStared = subreddit.getStared();
@@ -86,6 +90,7 @@ public class StaredSubredditsAdapter extends RecyclerView.Adapter<StaredSubreddi
                         staredImageView.setImageResource(R.drawable.yellow_star);
                         isStared = true;
                     }
+                    staredSubreddits.get(position).setStared(isStared);
                 }
             });
 

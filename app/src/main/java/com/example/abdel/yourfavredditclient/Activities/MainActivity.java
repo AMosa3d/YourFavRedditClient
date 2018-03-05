@@ -26,6 +26,7 @@ import com.example.abdel.yourfavredditclient.Models.Account;
 import com.example.abdel.yourfavredditclient.Models.OAuthAccessToken;
 import com.example.abdel.yourfavredditclient.Models.Post;
 import com.example.abdel.yourfavredditclient.R;
+import com.example.abdel.yourfavredditclient.Services.NotificationService;
 import com.example.abdel.yourfavredditclient.Utils.DatabaseUtils;
 import com.example.abdel.yourfavredditclient.Utils.LogicUtils;
 import com.example.abdel.yourfavredditclient.Utils.NetworkUtils;
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements PassPostsInterfac
         Uri uri = getIntent().getData();
 
         if (uri != null && uri.toString().substring(0, REDIRECT_URI.length()).equals(REDIRECT_URI)) {
-            Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getString(R.string.string_Welcome), Toast.LENGTH_SHORT).show();
 
             String code = uri.getQueryParameter(CODE_KEY);
 
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements PassPostsInterfac
 
     void passPostsData(List<Post> posts)
     {
-        posts = LogicUtils.filterByFavSubreddits(posts, DatabaseUtils.retrieveStaredSubreddit(this));
+        posts = LogicUtils.filterByFavSubreddits(posts, DatabaseUtils.getStaredSubredditNames(DatabaseUtils.retrieveStaredSubreddit(this)));
         this.posts = posts;
         DatabaseUtils.saveTopFivePosts(this,posts);
         homeFragment.setPostsList(posts,this);
@@ -201,5 +202,14 @@ public class MainActivity extends AppCompatActivity implements PassPostsInterfac
         detailFragment.setPost(currentPost);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.detail_container,detailFragment).commit();
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Intent notify = new Intent(MainActivity.this, NotificationService.class);
+        startService(notify);
     }
 }

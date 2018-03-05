@@ -27,19 +27,6 @@
 
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:id="@+id/reply_button"
-        android:textColor="@color/colorTextWhite"
-        android:text="@string/reply_text"
-        android:textStyle="bold"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:textSize="@dimen/home_text_size"
-        android:background="@color/colorPrimary"
-        />
 
     <View
         android:layout_width="match_parent"
