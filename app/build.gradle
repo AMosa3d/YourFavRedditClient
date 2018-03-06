@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        appConfig {
-            keyAlias 'reddit_client_key'
-            keyPassword 'keypassword'
-            storeFile file('E:/Projects/YourFavRedditClient/keystore/app_keystore.jks')
-            storePassword 'storepassword'
+        testconfig {
+            keyAlias 'test_key'
+            keyPassword 'keypass'
+            storeFile file("$rootDir/test_keystore.jks")
+            storePassword 'storepass'
         }
     }
     compileSdkVersion 25
@@ -26,7 +26,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.appConfig
+            signingConfig signingConfigs.testconfig
         }
     }
 }

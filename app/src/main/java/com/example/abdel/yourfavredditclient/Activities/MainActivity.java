@@ -118,12 +118,6 @@ public class MainActivity extends AppCompatActivity implements PassPostsInterfac
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (toggle.onOptionsItemSelected(item))
             return true;
